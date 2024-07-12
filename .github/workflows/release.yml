@@ -2,9 +2,8 @@ name: Release
 
 on:
   push:
-    branches:
-      - master
-      - CLOUDP-260766-goreleaser
+    tags:
+      - 'v*'
 
 permissions:
   contents: write
