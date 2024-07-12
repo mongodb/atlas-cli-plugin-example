@@ -1,0 +1,9 @@
+release:
+  builds:
+    - binary: mycliapp
+      goos:
+        - linux
+        - darwin
+        - windows
+      goarch:
+        - amd64
