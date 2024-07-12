@@ -1,9 +1,4 @@
-release:
-  builds:
-    - binary: mycliapp
-      goos:
-        - linux
-        - darwin
-        - windows
-      goarch:
-        - amd64
+builds:
+    id: "atlas-cli-plugin-example"
+    main: ./main.go
+    binary: ./bin/example

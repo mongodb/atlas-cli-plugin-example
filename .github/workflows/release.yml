@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - CLOUDP-260766-goreleaser
 
 permissions:
   contents: write
