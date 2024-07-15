@@ -9,6 +9,8 @@ builds:
     main: ./main.go
     binary: ./bin/example
 
-archives:
-  - files:
-      - ./manifest.yml
+template_files:
+  - 
+    id: manifest
+    src: manifest.yml
+    dst: manifest.yml
