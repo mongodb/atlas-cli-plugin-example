@@ -26,12 +26,9 @@ jobs:
           VERSION=$(echo "${GITHUB_REF#refs/tags/v}")
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
     
-      - name: Update file
+      - name: Add version to manifest file
         run: |
           envsubst < manifest.yml > manifest_temp.yml && mv manifest_temp.yml manifest.yml
-          # git config --local user.email "action@github.com"
-          # git config --local user.name "GitHub Action"
-          # git commit -a -m "Add version to manifest.yml" --amend --no-edit --author="GitHub Actions <actions@github.com>"
 
       - name: Set up Go
         uses: actions/setup-go@v5

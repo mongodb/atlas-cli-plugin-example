@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://goreleaser.com/static/schema-pro.json
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
 project_name: atlas-cli-plugin-example
 
 version: 2
@@ -9,6 +9,6 @@ builds:
     main: ./main.go
     binary: ./bin/example
 
-release:
-  extra_files:
-    - glob: ./manifest.yml
+archives:
+  - files:
+      - manifest.yml
