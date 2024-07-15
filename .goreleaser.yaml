@@ -7,10 +7,9 @@ builds:
   - 
     id: "atlas-cli-plugin-example"
     main: ./main.go
-    binary: ./bin/example
+    binary: ./example
 
 archives:
   - files:
-      - README.md
       - src: "./manifest.yml"
-        dst: ./bin/manifest.yml
+        dst: ./manifest.yml
