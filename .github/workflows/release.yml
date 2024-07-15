@@ -6,7 +6,6 @@ on:
       - "v*.*.*"
     branches:
       - master
-      - CLOUDP-261728
 
 permissions:
   contents: write
@@ -21,13 +20,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up environment
+      - name: Add Version as environment veriable
         run: |
           VERSION=$(echo "${GITHUB_REF#refs/tags/v}")
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
     
       - name: Add version to manifest file
         run: |
+          # Change $VERSION in the manifest.yml to the version of the release
           envsubst < manifest.yml > manifest_temp.yml && mv manifest_temp.yml manifest.yml
 
       - name: Set up Go
