@@ -11,5 +11,5 @@ builds:
 
 archives:
   - files:
-      - src: "manifest.yml"
+      - src: "./manifest.yml"
         dst: ./bin/manifest.yml
