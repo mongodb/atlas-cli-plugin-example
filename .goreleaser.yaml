@@ -11,4 +11,5 @@ builds:
 
 archives:
   - files:
-      - manifest.yml
+      - src: "manifest.yml"
+        dst: bin
