@@ -20,9 +20,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Add Version as environment veriable
+      - name: Add Version as environment variable
         run: |
-          VERSION=$(echo "${GITHUB_REF#refs/tags/v}")
+          VERSION=${GITHUB_REF#refs/tags/v}
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
     
       - name: Add version to manifest file
@@ -32,6 +32,8 @@ jobs:
 
       - name: Set up Go
         uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
