@@ -1,0 +1,10 @@
+name: atlas-cli-plugin-example
+description: this is an example plugin
+version: $VERSION
+github: $GITHUB
+binary: example
+commands: 
+    testplugin: 
+        description: this is the first test command
+    testplugin2:
+        description: this is the second test command
