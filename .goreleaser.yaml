@@ -11,5 +11,6 @@ builds:
 
 archives:
   - files:
+      - README.md
       - src: "./manifest.yml"
         dst: ./bin/manifest.yml
