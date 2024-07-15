@@ -15,35 +15,36 @@ jobs:
   release:
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+      
+    - name: Set Environment Variables
+      run: |
+        echo "REPO_NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV
+        echo "REPO_OWNER=${{ github.repository_owner }}" >> $GITHUB_ENV
+        TAG_VERSION=${GITHUB_REF#refs/tags/}
+        VERSION=${TAG_VERSION#v}
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-      - name: Set Environment Variables
-        run: |
-          echo "REPO_NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV
-          echo "REPO_OWNER=${{ github.repository_owner }}" >> $GITHUB_ENV
-          TAG_VERSION=${GITHUB_REF#refs/tags/}
-          VERSION=${TAG_VERSION#v}
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
+    - name: Use Environment Variables in Inline Script
+      run: |
+        echo "Github: $GITHUB"
+        echo "Version: $VERSION"
+      env:
+        GITHUB: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
+        VERSION: ${{ env.VERSION }}
 
-      - name: Use Environment Variables in Inline Script
-        run: |
-          echo "Github: $GITHUB"
-          echo "Version: $VERSION"
-        env:
-          GITHUB: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
-          VERSION: ${{ env.VERSION }}
+    - name: Set up Go
+      uses: actions/setup-go@v5
 
-      - name: Set up Go
-        uses: actions/setup-go@v5
-
-      - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v6
-        with:
-          distribution: goreleaser
-          version: 'latest'
-          args: release --clean
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Run GoReleaser
+      uses: goreleaser/goreleaser-action@v6
+      with:
+        distribution: goreleaser
+        version: 'latest'
+        args: release --clean
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
