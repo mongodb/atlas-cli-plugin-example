@@ -20,15 +20,18 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Set up environment
+        run: |
+          VERSION=$(echo "${GITHUB_REF#refs/tags/v}")
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
     
       - name: Update file
         run: |
-          echo "Updating file" > updated-file.txt
+          envsubst < manifest.yml > manifest_temp.yml && mv manifest_temp.yml manifest.yml
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add updated-file.txt
-          git commit -m "Update file via GitHub Actions"
-          git push origin ${{ github.ref }}
+          git commit -a -m "Add version to manifest.yml"
 
       - name: Set up Go
         uses: actions/setup-go@v5

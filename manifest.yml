@@ -1,6 +1,6 @@
 name: atlas-cli-plugin-example
 description: this is an example plugin
-version: {{ .Version }}
+version: $VERSION
 github: mongodb/atlas-cli-plugin-example
 binary: example
 commands: 
