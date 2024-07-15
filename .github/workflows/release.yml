@@ -20,6 +20,15 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+    
+      - name: Update file
+        run: |
+          echo "Updating file" > updated-file.txt
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add updated-file.txt
+          git commit -m "Update file via GitHub Actions"
+          git push origin ${{ github.ref }}
 
       - name: Set up Go
         uses: actions/setup-go@v5
