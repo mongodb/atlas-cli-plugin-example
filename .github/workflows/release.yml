@@ -16,6 +16,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check if event is a tag
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: echo "Tag push detected: ${{ github.ref }}"
+        
       - name: Checkout code
         uses: actions/checkout@v4
         with:
