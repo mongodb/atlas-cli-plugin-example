@@ -26,16 +26,15 @@ jobs:
           echo "REPO_NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV
           echo "REPO_OWNER=${{ github.repository_owner }}" >> $GITHUB_ENV
           TAG_VERSION=${GITHUB_REF#refs/tags/}
-          echo "VERSION=$TAG_VERSION" >> $GITHUB_ENV
+          VERSION=${TAG_VERSION#v}
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Use Environment Variables in Inline Script
         run: |
-          echo "Repository Name: $REPO_NAME"
-          echo "Repository Owner: $REPO_OWNER"
+          echo "Github: $GITHUB"
           echo "Version: $VERSION"
         env:
-          REPO_NAME: ${{ env.REPO_NAME }}
-          REPO_OWNER: ${{ env.REPO_OWNER }}
+          GITHUB: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
           VERSION: ${{ env.VERSION }}
 
       - name: Set up Go
