@@ -40,6 +40,10 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
 
+      - name: Modify manifest.yaml
+        run: |
+          envsubst < manifest.yml > manifest_temp.yml && mv manifest_temp.yml manifest.yml
+
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
         with:
