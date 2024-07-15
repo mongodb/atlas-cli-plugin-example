@@ -8,9 +8,3 @@ builds:
     id: "atlas-cli-plugin-example"
     main: ./main.go
     binary: ./bin/example
-
-template_files:
-  - 
-    id: manifest
-    src: manifest.yml
-    dst: manifest.yml
