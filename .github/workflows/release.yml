@@ -29,9 +29,9 @@ jobs:
       - name: Update file
         run: |
           envsubst < manifest.yml > manifest_temp.yml && mv manifest_temp.yml manifest.yml
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git commit -a -m "Add version to manifest.yml" --amend --no-edit --author="GitHub Actions <actions@github.com>"
+          # git config --local user.email "action@github.com"
+          # git config --local user.name "GitHub Action"
+          # git commit -a -m "Add version to manifest.yml" --amend --no-edit --author="GitHub Actions <actions@github.com>"
 
       - name: Set up Go
         uses: actions/setup-go@v5
@@ -41,6 +41,6 @@ jobs:
         with:
           distribution: goreleaser
           version: "latest"
-          args: release --clean
+          args: release --clean --snapshot
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
