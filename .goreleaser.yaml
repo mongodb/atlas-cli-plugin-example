@@ -12,4 +12,4 @@ builds:
 archives:
   - files:
       - src: "manifest.yml"
-        dst: bin
+        dst: ./bin/manifest.yml
