@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+project_name: atlas-cli-plugin-example
+
+version: 2
+
+builds:
+  - 
+    id: "atlas-cli-plugin-example"
+    main: ./main.go
+    binary: ./example
+
+archives:
+  - files:
+      - src: "./manifest.yml"
+        dst: ./manifest.yml
