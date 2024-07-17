@@ -1,7 +1,9 @@
 name: atlas-cli-plugin-example
 description: this is an example plugin
 version: $VERSION
-github: mongodb/atlas-cli-plugin-example
+github:
+    owner: $GITHUB_REPOSITORY_OWNER
+    name: $GITHUB_REPOSITORY_NAME
 binary: example
 commands: 
     testplugin: 
