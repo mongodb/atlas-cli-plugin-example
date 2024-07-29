@@ -1,6 +1,6 @@
 module atlas-cli-plugin-example
 
-go 1.22.4
+go 1.22.5
 
 require (
 	github.com/spf13/cobra v1.8.1
