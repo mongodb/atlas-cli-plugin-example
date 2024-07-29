@@ -15,11 +15,38 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
 
 	"github.com/spf13/cobra"
 )
+
+func EchoBuilder() *cobra.Command {
+	return &cobra.Command{
+		Use: "echo",
+		Short: "Echos the input args",
+		RunE: func(_ *cobra.Command, args []string) error {
+			if len(args) == 0 {
+				return errors.New("no args given")
+			}
+			for _, arg := range args {
+				fmt.Printf("%s ", arg)
+			}
+			return nil
+		},
+	}
+}
+
+func HelloBuilder() *cobra.Command {
+	return &cobra.Command{
+		Use: "hello",
+		Short: "The Hello World command",
+		Run: func(cmd *cobra.Command, args []string) {
+			fmt.Println("Hello World!")
+		},
+	}
+}
 
 func main() {
 	var rootCmd = &cobra.Command{
