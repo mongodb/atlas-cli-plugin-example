@@ -6,5 +6,5 @@ github:
     name: $GITHUB_REPOSITORY_NAME
 binary: example
 commands: 
-    testplugin: 
-        example: Root command of the atlas cli plugin example
+    example: 
+        description: Root command of the atlas cli plugin example
