@@ -15,25 +15,24 @@
 package main
 
 import (
+	"errors"
 	"fmt"
-	"os"
 
 	"github.com/spf13/cobra"
 )
 
-func main() {
-	var rootCmd = &cobra.Command{
-		Use:   "example",
-		Short: "Root command of the atlas cli plugin example",
-	}
-
-	rootCmd.AddCommand(
-		HelloBuilder(),
-		EchoBuilder(),
-	)
-
-	if err := rootCmd.Execute(); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+func EchoBuilder() *cobra.Command {
+	return &cobra.Command{
+		Use: "echo",
+		Short: "Echos the input args",
+		RunE: func(_ *cobra.Command, args []string) error {
+			if len(args) == 0 {
+				return errors.New("no args given")
+			}
+			for _, arg := range args {
+				fmt.Printf("%s ", arg)
+			}
+			return nil
+		},
 	}
 }
