@@ -16,26 +16,16 @@ package main
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/spf13/cobra"
 )
 
-
-
-func main() {
-	var rootCmd = &cobra.Command{
-		Use:   "example",
-		Short: "Root command of the atlas cli plugin example",
-	}
-
-	rootCmd.AddCommand(
-		HelloBuilder(),
-		EchoBuilder(),
-	)
-
-	if err := rootCmd.Execute(); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+func HelloBuilder() *cobra.Command {
+	return &cobra.Command{
+		Use: "hello",
+		Short: "The Hello World command",
+		Run: func(cmd *cobra.Command, args []string) {
+			fmt.Println("Hello World!")
+		},
 	}
 }
