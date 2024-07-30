@@ -12,34 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package main
+package printenv
 
 import (
 	"fmt"
 	"os"
 
-	"github.com/mongodb/mongodb-atlas-cli/internal/cli/echo"
-	"github.com/mongodb/mongodb-atlas-cli/internal/cli/hello"
-	"github.com/mongodb/mongodb-atlas-cli/internal/cli/printenv"
-	"github.com/mongodb/mongodb-atlas-cli/internal/cli/stdinreader"
 	"github.com/spf13/cobra"
 )
 
-func main() {
-	var rootCmd = &cobra.Command{
-		Use:   "example",
-		Short: "Root command of the atlas cli plugin example",
-	}
-
-	rootCmd.AddCommand(
-		hello.Builder(),
-		echo.Builder(),
-		printenv.Builder(),
-		stdinreader.Builder(),
-	)
-
-	if err := rootCmd.Execute(); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+func Builder() *cobra.Command {
+	return &cobra.Command{
+		Use:   "printenv",
+		Short: "Prints environment variables",
+		RunE: func(_ *cobra.Command, _ []string) error {
+			fmt.Println("Environment variables: ")
+			for _, env := range os.Environ() {
+				fmt.Printf("\t- %s\n", env)
+			}
+			return nil
+		},
 	}
 }
