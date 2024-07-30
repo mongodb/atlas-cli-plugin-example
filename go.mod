@@ -1,4 +1,4 @@
-module atlas-cli-plugin-example
+module github.com/mongodb/mongodb-atlas-cli
 
 go 1.22.5
 
