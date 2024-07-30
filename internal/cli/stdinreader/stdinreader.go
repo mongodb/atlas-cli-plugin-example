@@ -12,34 +12,33 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package main
+package stdinreader
 
 import (
+	"bufio"
 	"fmt"
 	"os"
+	"strings"
 
-	"github.com/mongodb/mongodb-atlas-cli/internal/cli/echo"
-	"github.com/mongodb/mongodb-atlas-cli/internal/cli/hello"
-	"github.com/mongodb/mongodb-atlas-cli/internal/cli/printenv"
-	"github.com/mongodb/mongodb-atlas-cli/internal/cli/stdinreader"
 	"github.com/spf13/cobra"
 )
 
-func main() {
-	var rootCmd = &cobra.Command{
-		Use:   "example",
-		Short: "Root command of the atlas cli plugin example",
-	}
+func Builder() *cobra.Command {
+	return &cobra.Command{
+		Use:   "stdinreader",
+		Short: "Reads name and prints it",
+		RunE: func(_ *cobra.Command, _ []string) error {
+			reader := bufio.NewReader(os.Stdin)
 
-	rootCmd.AddCommand(
-		hello.Builder(),
-		echo.Builder(),
-		printenv.Builder(),
-		stdinreader.Builder(),
-	)
+			fmt.Print("Please enter your name: ")
+			name, err := reader.ReadString('\n')
+			if err != nil {
+				return err
+			}
 
-	if err := rootCmd.Execute(); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+			name = strings.TrimSpace(name)
+			fmt.Printf("Hello, %s!\n", name)
+			return nil
+		},
 	}
 }

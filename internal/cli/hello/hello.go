@@ -20,11 +20,11 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func HelloBuilder() *cobra.Command {
+func Builder() *cobra.Command {
 	return &cobra.Command{
-		Use: "hello",
+		Use:   "hello",
 		Short: "The Hello World command",
-		Run: func(cmd *cobra.Command, args []string) {
+		Run: func(_ *cobra.Command, _ []string) {
 			fmt.Println("Hello World!")
 		},
 	}

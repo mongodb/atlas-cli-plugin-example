@@ -21,9 +21,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func EchoBuilder() *cobra.Command {
+func Builder() *cobra.Command {
 	return &cobra.Command{
-		Use: "echo",
+		Use:   "echo",
 		Short: "Echos the input args",
 		RunE: func(_ *cobra.Command, args []string) error {
 			if len(args) == 0 {
