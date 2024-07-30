@@ -6,7 +6,6 @@ on:
       - "v*.*.*"
     branches:
       - master
-      - update-dependencies
 
 permissions:
   contents: write
