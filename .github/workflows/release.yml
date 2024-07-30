@@ -6,6 +6,7 @@ on:
       - "v*.*.*"
     branches:
       - master
+      - update-dependencies
 
 permissions:
   contents: write
@@ -17,6 +18,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: 'master'
 
       - name: Add Version as environment variable
         run: |
