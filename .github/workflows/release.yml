@@ -27,7 +27,7 @@ jobs:
       - name: Add version to manifest file
         run: |
           # Change $VERSION in the manifest.yml to the version of the release
-          envsubst < manifest.yml > manifest_temp.yml && mv manifest_temp.yml manifest.yml
+          envsubst < manifest.template.yml > manifest_temp.yml && mv manifest_temp.yml manifest.yml
 
       - name: Set up Go
         uses: actions/setup-go@v5
