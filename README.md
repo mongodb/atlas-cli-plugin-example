@@ -7,7 +7,7 @@ A plugin for the Atlas CLI is essentially a standalone CLI. When a plugin is ins
 
 ## Developing a Plugin
 
-Plugins can be developed with any programming language and a plugin directory can contain any number of files, but it strictly requires two: an executable binary file and a `manifest.yml` file.
+Plugins can be developed with any programming language, however, in this example plugin we are using Go. A plugin directory can contain any number of files, but it strictly requires two: an executable binary file and a `manifest.yml` file.
 
 ### Manifest File
 The manifest file (`manifest.yml`) is an essential part of an Atlas CLI plugin and needs to live in the root folder of the release asset. Here is what the manifest file for this example plugin looks like:
@@ -32,13 +32,13 @@ commands:
 | `version` | The semantic version of the plugin.  | No
 | `github.owner` | The GitHub repository owner | Yes
 | `github.name`| The GitHub repository name | Yes
-| `binary`| The name of the plugin's binary file | Yes
+| `binary`| The name of the plugin's binary file | No
 | `commands.<command_name>` | An object where the key is the command name and the value is a description of the command | No (a plugin needs at least one command)
 | `commands.<command_name>.description` | A description of the command | No
 
 > **Important:** 
 > - The `version` field in the manifest file is crucial for the Atlas CLI to identify the installed plugin version and manage updates. Ensure that this field is always aligned with the plugin's release version to enable correct updates.
-> - If your plugin is not part of Github repository you can omit the entire `github` section. However, if your plugin is hosted on GitHub and you want to enable update functionality, you must include this section.
+> - If your plugin is not part of a Github repository you can omit the entire `github` section. However, if your plugin is hosted on GitHub and you want to enable update functionality, you must include this section.
 
 
 You may notice that there is no `manifest.yml` file in this repository, only a `manifest.template.yml`. This is because we use a [GitHub Action](https://github.com/mongodb/atlas-cli-plugin-example/blob/master/.github/workflows/release.yml) to automatically generate the `manifest.yml` file. Every time a new release is published, the template is used to create `manifest.yml` file and the release's version is automatically inserted into the `version` field. The [GoReleaser](https://goreleaser.com/) is used to create release assets that contain the plugin's binary and the `manifest.yml`.
@@ -57,7 +57,7 @@ To begin developing your own plugin, you can use this repository as a starting p
 1. Updating the name from `atlas-cli-plugin-example` to your preferred name in `manifest.template.yml` and `.goreleaser.yaml`
 1. Changing the module name in `go.mod` to match your repository name
 
-To install your plugin in the Atlas CLI, simply create a new release using a tag that follows [semantic versioning](https://semver.org/). This will trigger the [release workflow]([release workflow](https://github.com/mongodb/atlas-cli-plugin-example/blob/master/.github/workflows/release.yml)), which generates the release assets containing the executable binary and the manifest.yml. Once the release is complete, you can install your plugin in the Atlas CLI:
+To install your plugin in the Atlas CLI, simply create a new release using a tag that follows [semantic versioning](https://semver.org/). This will trigger the [release workflow](https://github.com/mongodb/atlas-cli-plugin-example/blob/master/.github/workflows/release.yml), which generates the release assets containing the executable binary and the manifest.yml. Once the release is complete, you can install your plugin in the Atlas CLI:
 
 ```bash
 atlas plugin install <repository-owner>/<repository-name>
