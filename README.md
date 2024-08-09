@@ -1,13 +1,13 @@
-# Atlas CLI Example Plugin
+# Atlas CLI Plugin Example
 This repository was created for developers who want to extend the [Atlas CLI](https://github.com/mongodb/mongodb-atlas-cli) with their own functionality. 
 
 ## How does it work?
 
-A plugin for the Atlas CLI is essentially a standalone CLI. When installed into the Atlas CLI, the plugin is intagrated as a normal subcommand to seamlessly extend the core functionality. When a plugin command is invocated, the Atlas CLI executes the plugin's binary and forwards all arguments, environment variables and standard input/output/error streams to it. This allows the plugin to function as if it was part of the Atlas CLI.
+A plugin for the Atlas CLI is essentially a standalone CLI. When a plugin is installed, the Atlas CLI downloads a release asset from the plugin's GitHub repository and unpacks it into a plugin directory within the Atlas CLI's config folder. The plugin is then integrated as a standard subcommand, seamlessly extending the core functionality of the CLI. When a plugin command is invoked, the Atlas CLI executes the plugin's binary and forwards all arguments, environment variables, and standard input/output/error streams to it, allowing the plugin to operate as if it were a native part of the Atlas CLI.
 
 ## Developing a Plugin
 
-A plugin can contain any number of files, but it strictly requires two: an executable binary file and a `manifest.yml` file.
+Plugins can be developed with any programming language and a plugin directory can contain any number of files, but it strictly requires two: an executable binary file and a `manifest.yml` file.
 
 ### Manifest File
 The manifest file (`manifest.yml`) is an essential part of an Atlas CLI plugin and needs to live in the root folder of the release asset. Here is what the manifest file for this example plugin looks like:
@@ -19,7 +19,7 @@ version: 2.0.1
 github:
     owner: mongodb
     name: atlas-cli-plugin-example
-binary: example
+binary: binary
 commands: 
     example: 
         description: Root command of the atlas cli plugin example
@@ -33,7 +33,7 @@ commands:
 | `github.owner` | The GitHub repository owner | Yes
 | `github.name`| The GitHub repository name | Yes
 | `binary`| The name of the plugin's binary file | Yes
-| `commands.<command_name>` | An object where the key is the command name and the value is a description of the command | No (there needs to be at least one command)
+| `commands.<command_name>` | An object where the key is the command name and the value is a description of the command | No (a plugin needs at least one command)
 | `commands.<command_name>.description` | A description of the command | No
 
 > **Important:** 
@@ -47,13 +47,19 @@ You may notice that there is no `manifest.yml` file in this repository, only a `
 
 The executable binary file is the file that the Atlas CLI runs when a plugin command is invoked. Arguments, environment variables, and standard input/output/error streams are passed through to this executable. The name of the binary file needs to be defined in the `binary` field of the `manifest.yml`.
 
+In this example plugin, we use the [GoReleaser](https://goreleaser.com/) to automatically generate the executable binary as part of the release assets.
 
 ## Getting Started
 
 To begin developing your own plugin, you can use this repository as a starting point. Click "Use this template" in the top right corner to create a new repository based on this example plugin. Afterward, you can start customizing your plugin by:
 1. Removing any unnecessary commands from `./internal/cli/`
+1. Updating the `rootCmd` in `./cmd/plugin/main.go` 
 1. Updating the name from `atlas-cli-plugin-example` to your preferred name in `manifest.template.yml` and `.goreleaser.yaml`
 1. Changing the module name in `go.mod` to match your repository name
 
+To install your plugin in the Atlas CLI, simply create a new release using a tag that follows [semantic versioning](https://semver.org/). This will trigger the [release workflow]([release workflow](https://github.com/mongodb/atlas-cli-plugin-example/blob/master/.github/workflows/release.yml)), which generates the release assets containing the executable binary and the manifest.yml. Once the release is complete, you can install your plugin in the Atlas CLI:
 
+```bash
+atlas plugin install <repository-owner>/<repository-name>
+```
 
