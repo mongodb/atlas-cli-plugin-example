@@ -4,7 +4,7 @@ version: $VERSION
 github:
     owner: $GITHUB_REPOSITORY_OWNER
     name: $GITHUB_REPOSITORY_NAME
-binary: example
+binary: binary
 commands: 
     example: 
         description: Root command of the atlas cli plugin example

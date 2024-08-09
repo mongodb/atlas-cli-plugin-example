@@ -1,6 +1,6 @@
 
 CLI_SOURCE_FILES?=./cmd/plugin
-CLI_BINARY_NAME=example
+CLI_BINARY_NAME=binary
 CLI_DESTINATION=./bin/$(CLI_BINARY_NAME)
 
 .PHONY: build
