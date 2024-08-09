@@ -3,7 +3,12 @@ This repository was created for developers who want to extend the [Atlas CLI](ht
 
 ## How does it work?
 
-A plugin for the Atlas CLI is essentially a standalone CLI. When a plugin is installed, the Atlas CLI downloads a release asset from the plugin's GitHub repository and unpacks it into a plugin directory within the Atlas CLI's config folder. The plugin is then integrated as a standard subcommand, seamlessly extending the core functionality of the CLI. When a plugin command is invoked, the Atlas CLI executes the plugin's binary and forwards all arguments, environment variables, and standard input/output/error streams to it, allowing the plugin to operate as if it were a native part of the Atlas CLI.
+A plugin for the Atlas CLI is essentially a standalone CLI. When a plugin is installed, the Atlas CLI downloads a release asset from the plugin's GitHub repository and unpacks it into a plugin directory within the Atlas CLI's config folder. The plugin is then integrated as a standard subcommand, seamlessly extending the core functionality of the CLI. When a plugin command is invoked, the Atlas CLI executes the plugin's binary and forwards 
+- all arguments 
+- environment variables
+- standard input/output/error
+
+That allows the plugin to operate as if it were a native part of the Atlas CLI.
 
 ## Developing a Plugin
 
@@ -29,7 +34,7 @@ commands:
 | - | - | - |
 | `name` | The name of the plugin | No
 | `description` | A brief description of the plugin. | No
-| `version` | The semantic version of the plugin.  | No
+| `version` | The [semantic versioning](https://semver.org/) of the plugin.  | No
 | `github.owner` | The GitHub repository owner | Yes
 | `github.name`| The GitHub repository name | Yes
 | `binary`| The name of the plugin's binary file | No
@@ -62,4 +67,3 @@ To install your plugin in the Atlas CLI, simply create a new release using a tag
 ```bash
 atlas plugin install <repository-owner>/<repository-name>
 ```
-
