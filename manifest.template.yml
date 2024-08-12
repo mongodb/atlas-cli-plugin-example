@@ -1,10 +1,10 @@
-name: atlas-cli-plugin-example
-description: this is an example plugin
+name: atlas-cli-first-class-plugin-example
+description: this is a first class plugin example plugin
 version: $VERSION
 github:
     owner: $GITHUB_REPOSITORY_OWNER
     name: $GITHUB_REPOSITORY_NAME
-binary: example
+binary: binary
 commands: 
-    example: 
-        description: Root command of the atlas cli plugin example
+    first-class: 
+        description: Root command of the Atlas CLI first class plugin example
