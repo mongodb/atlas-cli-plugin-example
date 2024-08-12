@@ -1,1 +1,1 @@
-# atlas-cli-plugin-example
+# atlas-cli-first-class-plugin-example
