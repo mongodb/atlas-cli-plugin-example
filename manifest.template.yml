@@ -1,5 +1,5 @@
 name: atlas-cli-first-class-plugin-example
-description: this is a first class plugin example plugin
+description: this is a first class plugin example
 version: $VERSION
 github:
     owner: $GITHUB_REPOSITORY_OWNER
