@@ -7,7 +7,7 @@ builds:
   - 
     id: "atlas-cli-plugin-example"
     main: ./cmd/plugin/main.go
-    binary: ./example
+    binary: ./binary
 
 archives:
   - files:
