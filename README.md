@@ -46,7 +46,7 @@ commands:
 > - If your plugin is not part of a Github repository you can omit the entire `github` section. However, if your plugin is hosted on GitHub and you want to enable update functionality, you must include this section.
 
 
-You may notice that there is no `manifest.yml` file in this repository, only a `manifest.template.yml`. This is because we use a [GitHub Action](https://github.com/mongodb/atlas-cli-plugin-example/blob/master/.github/workflows/release.yml) to automatically generate the `manifest.yml` file. Every time a new release is published, the template is used to create `manifest.yml` file and the release's version is automatically inserted into the `version` field. The [GoReleaser](https://goreleaser.com/) is used to create release assets that contain the plugin's binary and the `manifest.yml`.
+You may notice that there is no `manifest.yml` file in this repository, only a `manifest.template.yml`. This is because we use a [GitHub Action](https://github.com/mongodb/atlas-cli-plugin-example/blob/master/.github/workflows/release.yml) to automatically generate the `manifest.yml` file. Every time a new release is published, the template is used to create the required `manifest.yml` file, and the release's version is automatically inserted into the `version` field. The [GoReleaser](https://goreleaser.com/) is used to create release assets that contain the plugin's binary and the `manifest.yml`.
 
 ### Executable Binary
 
