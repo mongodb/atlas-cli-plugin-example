@@ -50,7 +50,7 @@ You may notice that there is no `manifest.yml` file in this repository, only a `
 
 ### Executable Binary
 
-The executable binary file is the file that the Atlas CLI runs when a plugin command is invoked. Arguments, environment variables, and standard input/output/error streams are passed through to this executable. The name of the binary file needs to be defined in the `binary` field of the `manifest.yml`.
+The Atlas CLI runs the executable binary file when a plugin command is invoked. Arguments, environment variables, and standard input/output/error streams are passed through to this executable. The name of the binary file needs to be defined in the `binary` field of the `manifest.yml`.
 
 In this example plugin, we use the [GoReleaser](https://goreleaser.com/) to automatically generate the executable binary as part of the release assets.
 
