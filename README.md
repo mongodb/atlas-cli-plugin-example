@@ -12,7 +12,7 @@ That allows the plugin to operate as if it were a native part of the Atlas CLI.
 
 ## Developing a Plugin
 
-Plugins can be developed with any programming language, however, in this example plugin we are using Go. A plugin directory can contain any number of files, but it strictly requires two: an executable binary file and a `manifest.yml` file.
+Plugins can be developed with any programming language. A plugin directory can contain any number of files, but it strictly requires two: an executable binary file and a `manifest.yml` file.
 
 ### Manifest File
 The manifest file (`manifest.yml`) is an essential part of an Atlas CLI plugin and needs to live in the root folder of the release asset. Here is what the manifest file for this example plugin looks like:
