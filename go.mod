@@ -1,4 +1,4 @@
-module github.com/stefan4h/atlas-cli-plugin-example
+module atlas-cli-plugin
 
 go 1.22.5
 
