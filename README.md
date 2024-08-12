@@ -3,7 +3,7 @@ This repository was created for developers who want to extend the [Atlas CLI](ht
 
 ## How does it work?
 
-A plugin for the Atlas CLI is essentially a standalone CLI. When a plugin is installed, the Atlas CLI downloads a release asset from the plugin's GitHub repository and unpacks it into a plugin directory within the Atlas CLI's config folder. The plugin is then integrated as a standard subcommand, seamlessly extending the core functionality of the CLI. When a plugin command is invoked, the Atlas CLI executes the plugin's binary and forwards 
+A plugin for the Atlas CLI is essentially a standalone CLI. When a plugin is installed, the Atlas CLI downloads a release asset from the plugin's GitHub repository and unpacks it into a plugin directory within the Atlas CLI's config folder. The plugin is then integrated as a standard subcommand, seamlessly extending the core functionality of the CLI. When a plugin command is invoked, the Atlas CLI executes the plugin's binary and forwards:
 - all arguments 
 - environment variables
 - standard input/output/error
