@@ -14,7 +14,7 @@ When a subcommand is invoked, the Atlas CLI executes the plugin's binary and for
 
 ### Plugin Installation
 When a plugin is installed, the Atlas CLI takes the following steps:
-1. download the release asset for the users OS from the plugin GitHub repository
+1. download the release asset for the user's OS from the plugin GitHub repository
 1. unpack the assets (manifest + binary + optinal extras) into the Atlas CLI plugin directory
 
 ## Developing a Plugin
