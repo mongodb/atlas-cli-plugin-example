@@ -18,10 +18,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/mongodb/mongodb-atlas-cli/internal/cli/echo"
-	"github.com/mongodb/mongodb-atlas-cli/internal/cli/hello"
-	"github.com/mongodb/mongodb-atlas-cli/internal/cli/printenv"
-	"github.com/mongodb/mongodb-atlas-cli/internal/cli/stdinreader"
+	"atlas-cli-plugin/internal/cli/echo"
+	"atlas-cli-plugin/internal/cli/hello"
+	"atlas-cli-plugin/internal/cli/printenv"
+	"atlas-cli-plugin/internal/cli/stdinreader"
 	"github.com/spf13/cobra"
 )
 

@@ -8,8 +8,6 @@ A plugin for the Atlas CLI is essentially a standalone CLI. When a plugin is ins
 - environment variables
 - standard input/output/error
 
-That allows the plugin to operate as if it were a native part of the Atlas CLI.
-
 ## Developing a Plugin
 
 Plugins can be developed with any programming language. A plugin directory can contain any number of files, but it strictly requires two: an executable binary file and a `manifest.yml` file.
@@ -60,7 +58,6 @@ To begin developing your own plugin, you can use this repository as a starting p
 1. Removing any unnecessary commands from `./internal/cli/`
 1. Updating the `rootCmd` in `./cmd/plugin/main.go` 
 1. Updating the name from `atlas-cli-plugin-example` to your preferred name in `manifest.template.yml` and `.goreleaser.yaml`
-1. Changing the module name in `go.mod` to match your repository name
 
 To install your plugin in the Atlas CLI, simply create a new release using a tag that follows [semantic versioning](https://semver.org/). This will trigger the [release workflow](https://github.com/mongodb/atlas-cli-plugin-example/blob/master/.github/workflows/release.yml), which generates the release assets containing the executable binary and the manifest.yml. Once the release is complete, you can install your plugin in the Atlas CLI:
 
