@@ -27,8 +27,8 @@ import (
 
 func main() {
 	var rootCmd = &cobra.Command{
-		Use:   "example",
-		Short: "Root command of the atlas cli plugin example",
+		Use:   "first-class",
+		Short: "Root command of the Atlas CLI first class plugin example",
 	}
 
 	rootCmd.AddCommand(
