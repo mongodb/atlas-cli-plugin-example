@@ -1,4 +1,4 @@
-// Copyright 2024 MongoDB Inc
+// Copyright 2020 MongoDB Inc
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,37 +12,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package main
+package listprofiles
 
 import (
 	"fmt"
-	"os"
 
-	"atlas-cli-plugin/internal/cli/echo"
-	"atlas-cli-plugin/internal/cli/hello"
-	"atlas-cli-plugin/internal/cli/listprofiles"
-	"atlas-cli-plugin/internal/cli/printenv"
-	"atlas-cli-plugin/internal/cli/stdinreader"
-
+	"github.com/mongodb/atlas-cli-core/config"
 	"github.com/spf13/cobra"
 )
 
-func main() {
-	var rootCmd = &cobra.Command{
-		Use:   "example",
-		Short: "Root command of the atlas cli plugin example",
+
+func Builder() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:     "listprofiles",
+		Short:   "Return a list of available profiles by name.",
+		Long:    `If you did not specify a name for your profile, it displays as the default profile.`,
+		Example: "  atlas config ls",
+		Run: func(_ *cobra.Command, _ []string) {
+			profiles := config.List()
+
+			for _, profile := range profiles {
+				fmt.Printf("%s\n", profile)
+			}
+		},
 	}
 
-	rootCmd.AddCommand(
-		hello.Builder(),
-		echo.Builder(),
-		printenv.Builder(),
-		stdinreader.Builder(),
-		listprofiles.Builder(),
-	)
-
-	if err := rootCmd.Execute(); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
+	return cmd
 }
