@@ -28,7 +28,7 @@ import (
 )
 
 func main() {
-	var rootCmd = &cobra.Command{
+	rootCmd := &cobra.Command{
 		Use:   "example",
 		Short: "Root command of the atlas cli plugin example",
 	}
@@ -41,7 +41,10 @@ func main() {
 		listprofiles.Builder(),
 	)
 
-	if err := rootCmd.Execute(); err != nil {
+	execCmd := &cobra.Command{Use: "exec"}
+	execCmd.AddCommand(rootCmd)
+
+	if err := execCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
