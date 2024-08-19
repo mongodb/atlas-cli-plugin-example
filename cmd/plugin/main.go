@@ -41,10 +41,15 @@ func main() {
 		listprofiles.Builder(),
 	)
 
-	execCmd := &cobra.Command{Use: "exec"}
-	execCmd.AddCommand(rootCmd)
+	pluginCmd := &cobra.Command{
+		Use: "plugin",
+		DisableFlagParsing: true,
+		DisableAutoGenTag: true,
+		DisableSuggestions: true,
+	}
+	pluginCmd.AddCommand(rootCmd)
 
-	if err := execCmd.Execute(); err != nil {
+	if err := pluginCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
