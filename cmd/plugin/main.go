@@ -28,12 +28,12 @@ import (
 )
 
 func main() {
-	rootCmd := &cobra.Command{
+	exampleCmd := &cobra.Command{
 		Use:   "example",
 		Short: "Root command of the atlas cli plugin example",
 	}
 
-	rootCmd.AddCommand(
+	exampleCmd.AddCommand(
 		hello.Builder(),
 		echo.Builder(),
 		printenv.Builder(),
@@ -41,15 +41,21 @@ func main() {
 		listprofiles.Builder(),
 	)
 
-	pluginCmd := &cobra.Command{
-		Use: "plugin",
+	completionOption := &cobra.CompletionOptions{
+		DisableDefaultCmd: true,
+		DisableNoDescFlag: true,
+		DisableDescriptions: true,
+		HiddenDefaultCmd: true,
+	}
+	rootCmd := &cobra.Command{
 		DisableFlagParsing: true,
 		DisableAutoGenTag: true,
 		DisableSuggestions: true,
+		CompletionOptions: *completionOption,
 	}
-	pluginCmd.AddCommand(rootCmd)
+	rootCmd.AddCommand(exampleCmd)
 
-	if err := pluginCmd.Execute(); err != nil {
+	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
