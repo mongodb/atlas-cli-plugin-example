@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package listprofiles
+package sharedlibrary
 
 import (
 	"fmt"
@@ -22,12 +22,11 @@ import (
 )
 
 
-func Builder() *cobra.Command {
+func ProfilelistBuilder() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:     "listprofiles",
+		Use:     "profile list",
 		Short:   "Return a list of available profiles by name.",
 		Long:    `If you did not specify a name for your profile, it displays as the default profile.`,
-		Example: "  atlas config ls",
 		Run: func(_ *cobra.Command, _ []string) {
 			profiles := config.List()
 

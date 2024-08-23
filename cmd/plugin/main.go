@@ -20,8 +20,8 @@ import (
 
 	"atlas-cli-plugin/internal/cli/echo"
 	"atlas-cli-plugin/internal/cli/hello"
-	"atlas-cli-plugin/internal/cli/listprofiles"
 	"atlas-cli-plugin/internal/cli/printenv"
+	"atlas-cli-plugin/internal/cli/sharedlibrary"
 	"atlas-cli-plugin/internal/cli/stdinreader"
 
 	"github.com/spf13/cobra"
@@ -38,7 +38,7 @@ func main() {
 		echo.Builder(),
 		printenv.Builder(),
 		stdinreader.Builder(),
-		listprofiles.Builder(),
+		sharedlibrary.Builder(),
 	)
 
 	completionOption := &cobra.CompletionOptions{
