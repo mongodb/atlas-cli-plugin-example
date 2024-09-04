@@ -3,8 +3,9 @@ module atlas-cli-plugin
 go 1.22.5
 
 require (
-	github.com/mongodb/atlas-cli-core v0.0.0-20240814111100-2a7be5a4e4b9
+	github.com/mongodb/atlas-cli-core v0.0.0-20240904154034-c2296b7ce2bf
 	github.com/spf13/cobra v1.8.1
+	go.mongodb.org/atlas-sdk/v20240805003 v20240805003.0.0
 )
 
 require (
@@ -15,6 +16,7 @@ require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
+	github.com/mongodb-forks/digest v1.1.0 // indirect
 	github.com/pelletier/go-toml v1.9.5 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.2 // indirect
 	github.com/sagikazarmark/locafero v0.4.0 // indirect

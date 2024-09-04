@@ -19,16 +19,17 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func Builder() *cobra.Command { 
+func Builder() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "sharedlibrary",
+		Use:     "sharedlibrary",
 		Aliases: []string{"shared"},
-		Short: "Commands using the shared library (atlas-cli-core)",
+		Short:   "Commands using the shared library (atlas-cli-core)",
 		PersistentPreRun: func(_ *cobra.Command, _ []string) {
 			config.LoadAtlasCLIConfig()
 		},
 	}
 	cmd.AddCommand(ProfilelistBuilder())
+	cmd.AddCommand(CallAtlasBuilder())
 
 	return cmd
 }
