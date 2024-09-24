@@ -23,8 +23,9 @@ import (
 
 func Builder() *cobra.Command {
 	return &cobra.Command{
-		Use:   "echo",
-		Short: "Echos the input args",
+		Use:                "echo",
+		Short:              "Echos the input args",
+		DisableFlagParsing: true,
 		RunE: func(_ *cobra.Command, args []string) error {
 			if len(args) == 0 {
 				return errors.New("no args given")
