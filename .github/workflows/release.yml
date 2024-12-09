@@ -24,8 +24,9 @@ jobs:
     
       - name: Add version to manifest file
         run: |
-          # Change $VERSION in the manifest.yml to the version of the release
-          envsubst < manifest.template.yml > manifest_temp.yml && mv manifest_temp.yml manifest.yml
+          # Convert the manifest template to the final manifest file
+          # This will set the version, github repository owner and name and binary name
+          make generate-all-manifests
 
       - name: Set up Go
         uses: actions/setup-go@v5
