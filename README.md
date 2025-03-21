@@ -35,6 +35,9 @@ binary: binary
 commands: 
     example: 
         description: Root command of the atlas cli plugin example
+        aliases:
+            - example-alias-1
+            - example-alias-2
 ```
 
 | Field | Description | Optional |
@@ -47,6 +50,7 @@ commands:
 | `binary`| The name of the plugin's binary file | No
 | `commands.<command_name>` | An object where the key is the command name and the value is a description of the command | No (a plugin needs at least one command)
 | `commands.<command_name>.description` | A description of the command | No
+| `commands.<command_name>.aliases` | An optional list of aliases for your command, for example a shorthand or a synonym | Yes
 
 > **Important:** 
 > - The `version` field in the manifest file is crucial for the Atlas CLI to identify the installed plugin version and manage updates. Ensure that this field is always aligned with the plugin's release version to enable correct updates.

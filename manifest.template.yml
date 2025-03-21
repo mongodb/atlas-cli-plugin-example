@@ -8,3 +8,6 @@ binary: $BINARY
 commands: 
     example: 
         description: Root command of the atlas cli plugin example
+        aliases:
+            - example-alias-1
+            - example-alias-2
