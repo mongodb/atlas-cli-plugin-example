@@ -18,8 +18,12 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"net/http"
+
+	"atlas-cli-plugin/internal/version"
 
 	"github.com/mongodb/atlas-cli-core/config"
+	"github.com/mongodb/atlas-cli-core/transport"
 	"github.com/spf13/cobra"
 	"go.mongodb.org/atlas-sdk/v20240805003/admin"
 )
@@ -29,11 +33,20 @@ func makeAtlasCall() {
 	ctx := context.Background()
 
 	// This is the only difference from the example code
-	// Use `config.HttpClient()` to get an authorized http client based on the default profile
-	sdk, err := admin.NewClient(admin.UseHTTPClient(config.HttpClient()), admin.UseBaseURL(config.HttpBaseURL()))
+	// Use `transport.HTTPClient()` to get an authorized http client based on the default profile
+	client, err := transport.HTTPClient(version.Version, http.DefaultTransport)
+	if err != nil {
+		log.Fatalf("Error when instantiating new httpClient: %v", err)
+	}
+	sdk, err := admin.NewClient(
+		admin.UseHTTPClient(client),
+		admin.UseUserAgent(config.UserAgent(version.Version)),
+		admin.UseBaseURL(config.OpsManagerURL()),
+	)
 	if err != nil {
 		log.Fatalf("Error when instantiating new client: %v", err)
 	}
+
 	projects, response, err := sdk.ProjectsApi.ListProjects(ctx).Execute()
 	if err != nil {
 		log.Fatalf("Could not fetch projects: %v", err)
