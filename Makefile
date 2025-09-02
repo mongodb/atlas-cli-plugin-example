@@ -4,11 +4,13 @@ CLI_BINARY_NAME?=binary
 CLI_DESTINATION=./bin/$(CLI_BINARY_NAME)
 MANIFEST_FILE?=manifest.yml
 WIN_MANIFEST_FILE?=manifest.windows.yml
+PLUGIN_VERSION?=$(shell git describe --tags --match "v*" | cut -d "v" -f 2)
+LINKER_FLAGS=-s -w -X atlas-cli-plugin/internal/version.Version=$(PLUGIN_VERSION)
 
 .PHONY: build
 build: ## Generate the binary in ./bin
 	@echo "==> Building $(CLI_BINARY_NAME) binary"
-	go build -o $(CLI_DESTINATION) $(CLI_SOURCE_FILES)
+	go build -ldflags "$(LINKER_FLAGS)" -o $(CLI_DESTINATION) $(CLI_SOURCE_FILES)
 
 .PHONY: generate-all-manifests
 generate-all-manifests: generate-manifest generate-manifest-windows
