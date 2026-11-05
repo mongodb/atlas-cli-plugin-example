@@ -24,8 +24,9 @@ func Builder() *cobra.Command {
 		Use:     "sharedlibrary",
 		Aliases: []string{"shared"},
 		Short:   "Commands using the shared library (atlas-cli-core)",
-		PersistentPreRun: func(_ *cobra.Command, _ []string) {
-			config.LoadAtlasCLIConfig()
+		PersistentPreRunE: func(_ *cobra.Command, _ []string) error {
+			_, err := config.LoadAtlasCLIConfig()
+			return err
 		},
 	}
 	cmd.AddCommand(ProfilelistBuilder())
